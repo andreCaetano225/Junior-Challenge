@@ -1,7 +1,7 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { CreatePowerRingsTable1742664264297 } from './migrations/1742664264297-CreatePowerRingsTable'
-import { Rings } from "../models/rings"
+import { Rings } from "../models/Rings"
 
 
 export const AppDataSource = new DataSource({
