@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { DeleteConfirmationDialog } from './DeleteConfirmationDialog';
 import { useState } from 'react';
 
-interface ProductMobile {
+interface RingsDesktop {
   rings: IRings[];
   loading: boolean;
 }
@@ -27,7 +27,7 @@ const getRingColor = (forgedBy: string): string => {
   }
 };
 
-export const DesktopCarrosel = ({ rings, loading }: ProductMobile) => {
+export const DesktopCarrosel = ({ rings, loading }: RingsDesktop) => {
   const navigate = useNavigate();
   const  [titleDialogName, setTitleDialogName] = useState<string>('')
   const  [idDeleteRing, setIdDeleteRing] = useState<number>(0)

@@ -2,13 +2,15 @@ import { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useParams } from "react-router-dom"; 
+import { useNavigate, useParams } from "react-router-dom"; 
 import { getRingById, saveRing } from "../hooks/useRings";
 import FormInput from "../components/FormInput";
 import IRings from "../interfaces/Rings";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import {  MdOutlineBackspace } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
 
 const ringSchema = z.object({
   name: z.string().min(3, "O nome deve ter pelo menos 3 caracteres"),
@@ -20,7 +22,7 @@ const ringSchema = z.object({
 
 export const RingsForm = () => {
   const { id } = useParams<{ id?: string }>();
-  // const navigate = useNavigate(); 
+  const navigate = useNavigate(); 
   const methods = useForm<IRings>({
     resolver: zodResolver(ringSchema),
     defaultValues: {
@@ -42,8 +44,16 @@ export const RingsForm = () => {
     }
   }, [id, reset]);
 
+  
+  const handleBackHomePage = () => {
+    navigate("/");
+  };
+
+  const handleViewRing = () => {
+    navigate("/view");
+  };
+
   const onSubmit = async (data: IRings) => {
-    console.log(data);
     try {
       await saveRing({ ...data, id: id ? Number(id) : undefined });
 
@@ -57,7 +67,11 @@ export const RingsForm = () => {
         theme: "light",
       });
 
-      // navigate("/rings");
+      setTimeout(() => {
+        navigate("/view");
+      }, 1000);
+
+      
     } catch (error: unknown) {
       let msgError = "Erro inesperado ao criar o anel.";
 
@@ -79,25 +93,44 @@ export const RingsForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-md shadow-md mt-10 w-[500px]">
-      <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
-        {id ? "Editar Anel" : "Criar Anel"}
-      </h2>
-      <FormProvider {...methods}>
-        <ToastContainer />
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormInput label="Nome" name="name" />
-          <FormInput label="Portador" name="carrier" options={["Elfos", "Anões", "Homens", "Sauron"]} />
-          <FormInput label="Poder" name="power" />
-          <FormInput label="Criado por" name="forgedBy" />
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md mt-4 hover:bg-blue-600 transition"
-          >
-            {id ? "Atualizar" : "Criar"}
-          </button>
-        </form>
-      </FormProvider>
-    </div>
+        <>
+         <div className="flex justify-between mt-[5rem]">
+            <button
+            onClick={() => handleBackHomePage()}
+              className=" flex  items-center justify-center gap-2 w-[120px] bg-blue-500 text-white py-2 rounded-md mt-4 hover:bg-blue-600 transition"
+            >
+              <MdOutlineBackspace/>
+              Voltar
+            </button>
+                <button
+                onClick={() => handleViewRing()}
+              className="flex  items-center justify-center gap-2  w-[140px] bg-blue-500 text-white py-2 rounded-md mt-4 hover:bg-blue-600 transition"
+            >
+              Ver Aneis
+              <FaEye/>
+            </button>
+        </div>
+          <div className="max-w-md mx-auto bg-white p-6 rounded-md shadow-md mt-10 w-[400px] sm:w-[500px]">
+            <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
+              {id ? "Editar Anel" : "Criar Anel"}
+            </h2>
+            <FormProvider {...methods}>
+              <ToastContainer />
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <FormInput label="Nome" name="name" />
+                <FormInput label="Portador" name="carrier" options={["Elfos", "Anões", "Homens", "Sauron"]} />
+                <FormInput label="Poder" name="power" />
+                <FormInput label="Criado por" name="forgedBy" />
+                <button
+                  type="submit"
+                  className="w-full bg-blue-500 text-white py-2 rounded-md mt-4 hover:bg-blue-600 transition"
+                >
+                  {id ? "Atualizar" : "Criar"}
+                </button>
+              </form>
+            </FormProvider>
+          </div>
+        </>
+   
   );
 };
