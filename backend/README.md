@@ -31,13 +31,12 @@ Clone o repositório
     docker-compose up --build
 ```
 
-
--GET /api/rings - Listar todos os anéis criados
--POST /api/rings - Criar um novo anel
--GET /api/rings/{id} - Detalhar um anel específico
--DELETE /api/rings/{id} - Deletar um anel específico
--PUT /api/rings/{id} - Editar um anel específico
--GET /api-docs - Documentação da API (Swagger)
+- GET /api/rings - Listar todos os anéis criados
+- POST /api/rings - Criar um novo anel
+- GET /api/rings/{id} - Detalhar um anel específico
+- DELETE /api/rings/{id} - Deletar um anel específico
+- PUT /api/rings/{id} - Editar um anel específico
+- GET /api-docs - Documentação da API (Swagger)
 
 
 
