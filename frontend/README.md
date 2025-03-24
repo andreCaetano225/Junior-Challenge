@@ -6,11 +6,11 @@ Este é um projeto desenvolvido utilizando **Vite**, **React** + **TypeScript**,
 
 1. **Clone o repositório**:
    ```bash
-   git clone 
+   git clone https://github.com/andreCaetano225/Junior-Challenge.git
 
 2. **Acesse a pasta do projeto**:
    ```bash
-   cd 
+   cd frontend
 
 3. **Instale as dependências**:
    npm install ou yarn
