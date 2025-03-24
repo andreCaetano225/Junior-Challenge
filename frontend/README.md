@@ -13,10 +13,9 @@ Este é um projeto desenvolvido utilizando **Vite**, **React** + **TypeScript**,
    cd frontend
 
 3. **Instale as dependências**:
+    ```bash
    npm install ou yarn
 
-4. **Para rodar o projeto**:
-   npm run dev ou yarn dev
-
-## Ou acesse o site no seu navegador: 
-   
+5. **Para rodar o projeto**:
+    ```bash
+    npm run dev ou yarn dev
