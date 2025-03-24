@@ -19,16 +19,14 @@ API para criação de anéis utilizando o ecossistema do Senhor dos Anéis.
 Clone o repositório
 
 ```bash
-  git clone https://github.com/andreCaetano225/Junior-Challenge.git
+git clone https://github.com/andreCaetano225/Junior-Challenge.git
 ```
-
-
 
 
 ## Rodando o Projeto
 
 ```bash
-    docker-compose up --build
+docker-compose up --build
 ```
 
 - GET /api/rings - Listar todos os anéis criados
