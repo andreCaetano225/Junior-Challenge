@@ -16,8 +16,8 @@ setupSwagger(app)
 
 
 AppDataSource.initialize().then(async () => {
-    console.log('Conectado com Database rodando')
+    console.log('Database init')
     app.listen(3000, () => {
-        console.log('Servidor iniciado')
+        console.log('Server init')
     })
 })

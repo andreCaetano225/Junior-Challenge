@@ -6,7 +6,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Minha API Express',
+      title: 'API Desafio Fullstack: Os Anéis de Poder',
       version: '1.0.0',
       description: 'Documentação da API usando Swagger',
     },
@@ -41,7 +41,7 @@ const options = {
       }
     }
   },
-  apis: ['./src/routes/rings.routes.ts'], // Arquivo onde estão as rotas documentadas
+  apis: ['./src/routes/rings.routes.ts'],
 };
 
 

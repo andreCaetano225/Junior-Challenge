@@ -5,7 +5,7 @@ import {
   updateRingService, 
   deleteRingService, 
   getRingByIdService 
-} from "../services/RingsService";  // Importando o serviço de GetById
+} from "../services/RingsService";
 import IRings from "../interfaces/Rings";
 
 export const getAllRings = async (_req: Request, res: Response): Promise<void> => {
