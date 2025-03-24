@@ -9,6 +9,15 @@ export const getAllRingsService = async (): Promise<IRings[]> => {
     return await ringsRepository.find()
 }
 
+export const getRingByIdService = async (id: number): Promise<IRings | null> => {
+  try {
+    const ring = await ringsRepository.findOneBy({ id });
+    return ring ? ring : null;
+  } catch (error) {
+    throw new Error("Erro ao buscar o anel");
+  }
+};
+
 export const createRingService = async (ringData: IRings): Promise<IRings> => {
     const forged = ringData.forgedBy;
 
@@ -19,7 +28,7 @@ export const createRingService = async (ringData: IRings): Promise<IRings> => {
 
     switch (forged) {
         case "Elfos":
-            if (forgedCount >= 2) {
+            if (forgedCount >= 3) {
                 throw new Error("Elfos já atingiram o limite de 3 anéis.");
             }
             break;
