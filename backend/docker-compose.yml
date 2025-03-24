@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: devvo-back-end
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db # Nome do serviço do MySQL no Docker
+      - DB_PORT=3306
+      - DB_USER=devvo
+      - DB_PASSWORD=1234
+      - DB_NAME=devvo_backend
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    command: npm run dev
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: devvo_backend
+      MYSQL_USER: devvo
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3308:3306" # Corrigido para mapear corretamente
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  mysql_data:
