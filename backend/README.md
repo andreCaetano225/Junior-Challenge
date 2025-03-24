@@ -19,7 +19,7 @@ API para criação de anéis utilizando o ecossistema do Senhor dos Anéis.
 Clone o repositório
 
 ```bash
-  gi
+  git clone https://github.com/andreCaetano225/Junior-Challenge.git
 ```
 
 
